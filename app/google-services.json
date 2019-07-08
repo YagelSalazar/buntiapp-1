@@ -1,34 +1,34 @@
 {
   "project_info": {
-    "project_number": "148919921201",
-    "firebase_url": "https://buntiapp-b4c64.firebaseio.com",
-    "project_id": "buntiapp-b4c64",
-    "storage_bucket": "buntiapp-b4c64.appspot.com"
+    "project_number": "422168280434",
+    "firebase_url": "https://buntiapp-82c84.firebaseio.com",
+    "project_id": "buntiapp-82c84",
+    "storage_bucket": "buntiapp-82c84.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:148919921201:android:c9c2b95bd26b5c8d",
+        "mobilesdk_app_id": "1:422168280434:android:c9c2b95bd26b5c8d",
         "android_client_info": {
           "package_name": "com.bucket.bunti"
         }
       },
       "oauth_client": [
         {
-          "client_id": "148919921201-vsg37dn1mrep1pcoccd35iqtoohqdpj9.apps.googleusercontent.com",
+          "client_id": "422168280434-1l4n4vre9sfpklo0len49b5v2atft3tf.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBk2KQVOsN_5L7sgfZGf-MydOMVdObzFYg"
+          "current_key": "AIzaSyDU4zjX8Z8_PaOzjpGBdjtCEJaxnbvcFps"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "148919921201-vsg37dn1mrep1pcoccd35iqtoohqdpj9.apps.googleusercontent.com",
+              "client_id": "422168280434-1l4n4vre9sfpklo0len49b5v2atft3tf.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
