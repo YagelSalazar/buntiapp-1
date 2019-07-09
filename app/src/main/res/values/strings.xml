@@ -5,4 +5,6 @@
     <string name="nombre">Nombre</string>
     <string name="registrarme">Registrarme</string>
     <string name="email">Email</string>
+    <string name="iniciar_sesi_n">Iniciar sesión</string>
+    <string name="crear_cuenta">Crear cuenta</string>
 </resources>

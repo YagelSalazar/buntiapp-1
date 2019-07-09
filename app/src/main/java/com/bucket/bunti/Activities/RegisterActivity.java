@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bucket.bunti.R;
@@ -21,7 +23,9 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText txtUser, txtEmail, txtPassword, txtPasswordC;
-    private Button btnRegister;
+    private Button btnRegister, btnLogin;
+    private ProgressBar pbRegister;
+    private Intent homeActivity, loginActivity;
 
     //FIREBASE
     private FirebaseAuth oAuth;
@@ -36,24 +40,28 @@ public class RegisterActivity extends AppCompatActivity {
         txtPassword  = findViewById(R.id.txtPassword);
         txtPasswordC = findViewById(R.id.txtPasswordConfirm);
         btnRegister  = findViewById(R.id.btnRegister);
+        btnLogin     = findViewById(R.id.btnBackLogin);
+        pbRegister   = findViewById(R.id.pbRegister);
         oAuth        = FirebaseAuth.getInstance();
+        homeActivity  = new Intent(this,HomeActivity.class);
+        loginActivity  = new Intent(this,LoginActivity.class);
 
-
+        pbRegister.setVisibility(View.INVISIBLE);
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                disableComponents();
 
                 final String user  = txtUser.getText().toString();
                 final String email = txtEmail.getText().toString();
                 final String password = txtPassword.getText().toString();
                 final String passwordC = txtPasswordC.getText().toString();
 
-                btnRegister.setVisibility(View.INVISIBLE);
-
                 if(user.isEmpty() || email.isEmpty() || password.isEmpty() || passwordC.isEmpty()){
                     // Wrong - fields are empty
                     showMessage("Por favor completa todos los campos");
-                    btnRegister.setVisibility(View.VISIBLE);
+                    enableComponents();
                 } else {
                     // fields ok
                     if(password.equals(passwordC)){
@@ -62,9 +70,16 @@ public class RegisterActivity extends AppCompatActivity {
                     } else {
                         // Wrong - passwords not same
                         showMessage("Las contraseñas no coinciden");
-                        btnRegister.setVisibility(View.VISIBLE);
+                        enableComponents();
                     }
                 }
+            }
+        });
+
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                updateUI("login");
             }
         });
     }
@@ -79,8 +94,8 @@ public class RegisterActivity extends AppCompatActivity {
                             showMessage("Cuenta creada...");
                             updateUserInfo(user, oAuth.getCurrentUser());
                         } else {
+                            enableComponents();
                             showMessage("Ocurrio un error, intenta más tarde");
-                            btnRegister.setVisibility(View.VISIBLE);
                         }
                     }
                 });
@@ -96,23 +111,54 @@ public class RegisterActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
+                        // register finished
                         if(task.isSuccessful()){
                             showMessage("¡Registro exitoso!");
-                            updateUI();
+                            enableComponents();
+                            updateUI("home");
                         }
                     }
                 });
     }
 
-    private void updateUI(){
-        Intent homeActivity = new Intent(getApplicationContext(), HomeActivity.class);
-        startActivity(homeActivity);
+    private void updateUI(String activity){
+        // sent to new activity
+        switch (activity){
+            case "home":
+                startActivity(homeActivity);
+                break;
+
+            case "login":
+                startActivity(loginActivity);
+                break;
+        }
         finish();
     }
-
 
     private void showMessage(String message){
         // Method for toast messages
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void disableComponents(){
+        txtUser.setEnabled(false);
+        txtEmail.setEnabled(false);
+        txtPassword.setEnabled(false);
+        txtPasswordC.setEnabled(false);
+        btnLogin.setEnabled(false);
+        btnRegister.setEnabled(false);
+        btnRegister.setText("Registrando...");
+        btnRegister.setTextColor(getApplication().getResources().getColor(R.color.colorPrimaryDark));
+    }
+
+    private void enableComponents(){
+        txtUser.setEnabled(true);
+        txtEmail.setEnabled(true);
+        txtPassword.setEnabled(true);
+        txtPasswordC.setEnabled(true);
+        btnLogin.setEnabled(true);
+        btnRegister.setEnabled(true);
+        btnRegister.setText(getResources().getString(R.string.registrarme));
+        btnRegister.setTextColor(Color.parseColor("#FFFFFF"));
     }
 }
