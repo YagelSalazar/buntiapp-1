@@ -115,7 +115,7 @@ public class RegisterActivity extends AppCompatActivity {
                         if(task.isSuccessful()){
                             showMessage("¡Registro exitoso!");
                             enableComponents();
-                            updateUI("home");
+                            updateUI("login");
                         }
                     }
                 });
