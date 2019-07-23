@@ -23,7 +23,7 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText loginEmail, loginPassword;
     private Button btnLogin, btnRegister;
-    private ProgressBar progressBar;
+    //private ProgressBar progressBar;
     private Intent homeActivity, registerActivity;
 
 
@@ -37,14 +37,14 @@ public class LoginActivity extends AppCompatActivity {
 
         loginEmail    = findViewById(R.id.loginEmail);
         loginPassword = findViewById(R.id.loginPassword);
-        progressBar   = findViewById(R.id.pbLogin);
+        //progressBar   = findViewById(R.id.pbLogin);
         btnLogin      = findViewById(R.id.btnLogin);
         btnRegister   = findViewById(R.id.btnCreateAccount);
         oAuth         = FirebaseAuth.getInstance();
         homeActivity  = new Intent(this,HomeActivity.class);
         registerActivity  = new Intent(this,RegisterActivity.class);
 
-        progressBar.setVisibility(View.INVISIBLE);
+        //progressBar.setVisibility(View.INVISIBLE);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
         btnRegister.setEnabled(true);
         btnLogin.setEnabled(true);
         btnLogin.setText(getResources().getString(R.string.iniciar_sesi_n));
-        btnLogin.setTextColor(Color.parseColor("#FFFFFF"));
+        btnLogin.setTextColor(getApplication().getResources().getColor(R.color.colorText));
     }
 
     @Override

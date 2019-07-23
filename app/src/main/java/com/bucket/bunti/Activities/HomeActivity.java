@@ -45,8 +45,8 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        localizacion();
-        registrarLocalizacion();
+//        localizacion();
+//        registrarLocalizacion();
 
         userName  = findViewById(R.id.homeUsername);
         userEmail = findViewById(R.id.homeUseremail);

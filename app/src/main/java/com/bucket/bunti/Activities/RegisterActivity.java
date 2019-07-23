@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -22,9 +23,9 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    private EditText txtUser, txtEmail, txtPassword, txtPasswordC;
+    private EditText txtUser, txtEmail, txtPhone, txtPassword, txtPasswordC;
     private Button btnRegister, btnLogin;
-    private ProgressBar pbRegister;
+    private CheckBox cbConditions;
     private Intent homeActivity, loginActivity;
 
     //FIREBASE
@@ -37,16 +38,29 @@ public class RegisterActivity extends AppCompatActivity {
 
         txtUser      = findViewById(R.id.txtName);
         txtEmail     = findViewById(R.id.txtEmail);
+        txtPhone     = findViewById(R.id.txtPhone);
         txtPassword  = findViewById(R.id.txtPassword);
         txtPasswordC = findViewById(R.id.txtPasswordConfirm);
         btnRegister  = findViewById(R.id.btnRegister);
         btnLogin     = findViewById(R.id.btnBackLogin);
-        pbRegister   = findViewById(R.id.pbRegister);
+        cbConditions = findViewById(R.id.cbAcept);
         oAuth        = FirebaseAuth.getInstance();
         homeActivity  = new Intent(this,HomeActivity.class);
         loginActivity  = new Intent(this,LoginActivity.class);
 
-        pbRegister.setVisibility(View.INVISIBLE);
+
+        btnRegister.setEnabled(false);
+        cbConditions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(cbConditions.isChecked()){
+                    btnRegister.setEnabled(true);
+                } else {
+                    btnRegister.setEnabled(false);
+                }
+            }
+        });
+
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,21 +69,27 @@ public class RegisterActivity extends AppCompatActivity {
 
                 final String user  = txtUser.getText().toString();
                 final String email = txtEmail.getText().toString();
+                final String phone = txtPhone.getText().toString();
                 final String password = txtPassword.getText().toString();
                 final String passwordC = txtPasswordC.getText().toString();
 
-                if(user.isEmpty() || email.isEmpty() || password.isEmpty() || passwordC.isEmpty()){
+                if(user.isEmpty() || email.isEmpty() || phone.isEmpty() || password.isEmpty() || passwordC.isEmpty()){
                     // Wrong - fields are empty
                     showMessage("Por favor completa todos los campos");
                     enableComponents();
                 } else {
                     // fields ok
-                    if(password.equals(passwordC)){
-                        // Create account
-                        CreateUserAccount(user,email,password);
+                    if(password.length() >= 8 && passwordC.length() >= 8){
+                        if(password.equals(passwordC)){
+                            // Create account
+                            CreateUserAccount(user,email,password);
+                        } else {
+                            // Wrong - passwords not same
+                            showMessage("Las contraseñas no coinciden");
+                            enableComponents();
+                        }
                     } else {
-                        // Wrong - passwords not same
-                        showMessage("Las contraseñas no coinciden");
+                        showMessage("Las contraseñas deben tener al menos 8 digitos");
                         enableComponents();
                     }
                 }
@@ -143,6 +163,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void disableComponents(){
         txtUser.setEnabled(false);
         txtEmail.setEnabled(false);
+        txtPhone.setEnabled(false);
         txtPassword.setEnabled(false);
         txtPasswordC.setEnabled(false);
         btnLogin.setEnabled(false);
@@ -154,11 +175,12 @@ public class RegisterActivity extends AppCompatActivity {
     private void enableComponents(){
         txtUser.setEnabled(true);
         txtEmail.setEnabled(true);
+        txtPhone.setEnabled(true);
         txtPassword.setEnabled(true);
         txtPasswordC.setEnabled(true);
         btnLogin.setEnabled(true);
         btnRegister.setEnabled(true);
         btnRegister.setText(getResources().getString(R.string.registrarme));
-        btnRegister.setTextColor(Color.parseColor("#FFFFFF"));
+        btnRegister.setTextColor(getApplication().getResources().getColor(R.color.colorText));
     }
 }
