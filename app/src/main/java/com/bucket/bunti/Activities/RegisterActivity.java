@@ -58,7 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
         cbConditions = findViewById(R.id.cbAcept);
         oAuth        = FirebaseAuth.getInstance();
         dataBase     = FirebaseFirestore.getInstance();
-        homeActivity  = new Intent(this,HomeActivity.class);
+        homeActivity  = new Intent(this,MenuActivity.class);
         loginActivity  = new Intent(this,LoginActivity.class);
 
 
@@ -148,11 +148,8 @@ public class RegisterActivity extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        //Log.d("usuario", "DocumentSnapshot added with ID: " + documentReference.getId());
                         //after create account, create login auth
                         showMessage("¡Registro exitoso!");
-//                        SharedPreferencesProject.insertData(getApplicationContext(),
-//                                "id_document",documentReference.getId());
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

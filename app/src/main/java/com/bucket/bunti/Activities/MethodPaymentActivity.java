@@ -35,6 +35,7 @@ public class MethodPaymentActivity extends AppCompatActivity {
     private FirebaseFirestore dataBase;
     private CollectionReference usuariosRef;
     private Date date = new Date();
+    private String address, latitud,longitud;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class MethodPaymentActivity extends AppCompatActivity {
         Button btnCash = (Button) findViewById(R.id.buttonCash);
         Button btnCreditCard = (Button) findViewById(R.id.buttonCreditCard);
         Button btnPaypal = (Button) findViewById(R.id.buttonPayPal);
+
 
         oAuth       = FirebaseAuth.getInstance();
         user = oAuth.getCurrentUser();
@@ -74,11 +76,17 @@ public class MethodPaymentActivity extends AppCompatActivity {
     }
 
     private void saveService(String metodo_pago){
+        address  = SharedPreferencesProject.retriveData(getApplicationContext(),"address");
+        latitud  = SharedPreferencesProject.retriveData(getApplicationContext(),"latitud");
+        longitud = SharedPreferencesProject.retriveData(getApplicationContext(),"longitud");
+
         // Create a new user
         Map<String, Object> service = new HashMap<>();
         service.put("usuario", user.getDisplayName());
         service.put("pago",metodo_pago);
-        service.put("direccion", "actopan hgo");
+        service.put("direccion", address);
+        service.put("latitud", latitud);
+        service.put("longitud", longitud);
         service.put("fecha", getDate());
         service.put("hora", getHour());
 
