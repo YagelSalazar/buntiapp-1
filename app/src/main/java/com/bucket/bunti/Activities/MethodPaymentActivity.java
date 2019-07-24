@@ -42,7 +42,8 @@ public class MethodPaymentActivity extends AppCompatActivity {
     }
 
     private void updateUI(){
-//        Intent intentSatisfactoryPayment = new Intent(getApplicationContext(), SatisfactoryPayment.class);
-//        startActivityForResult(intentSatisfactoryPayment,0);
+        Intent intentSatisfactoryPayment = new Intent(getApplicationContext(), SatisfactoryPaymentActivity.class);
+        startActivityForResult(intentSatisfactoryPayment,0);
+        finish();
     }
 }
