@@ -38,5 +38,23 @@ public class MenuActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        Button btnlocalization = (Button) findViewById(R.id.buttonSearch);
+        btnlocalization.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentlocalization = new Intent(view.getContext(),LocalizationScreen.class);
+                startActivityForResult(intentlocalization,0);
+            }
+        });
+
+        Button btnUserFound = (Button) findViewById(R.id.buttonCall);
+        btnUserFound.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intentUserFound = new Intent(view.getContext(),UserFound.class);
+                startActivityForResult(intentUserFound,0);
+            }
+        });
     }
 }

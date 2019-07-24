@@ -13,4 +13,19 @@
     <string name="sesion">Regístrate o Inicia sesión con tu email</string>
     <string name="btnbuscar">Buscar Taxi</string>
     <string name="btnllamar">Llamar a la base</string>
+    <string name="user">Usuario encontrado</string>
+    <string name="destino">Llevar a su destino</string>
+    <string name="activar">¿Quieres activar tu localización?</string>
+    <string name="ubicacion">Necesitamos saber tu localización para poder ubicarte</string>
+    <string name="no">Ahora no</string>
+    <string name="btnSi">Sí</string>
+    <string name="pagar">¿Cómo quieres pagar?</string>
+    <string name="elige">Elige tu forma de pago favorita</string>
+    <string name="btnefectivo">Efectivo</string>
+    <string name="btntarjeta">Tarjeta bancaria</string>
+    <string name="btnpaypal">Paypal</string>
+    <string name="pago">Pago Satisfactorio</string>
+    <string name="taxi">¡Taxista en camino!</string>
+    <string name="paciente">Le pedimos ser paciente, por su atención, gracias</string>
+    <string name="tiempo">Tiempo de llegada: 5 min</string>
 </resources>
