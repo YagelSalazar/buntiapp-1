@@ -43,7 +43,7 @@ public class MenuActivity extends AppCompatActivity {
         btnlocalization.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intentlocalization = new Intent(view.getContext(),LocalizationScreen.class);
+                Intent intentlocalization = new Intent(view.getContext(), LocalizationActivity.class);
                 startActivityForResult(intentlocalization,0);
             }
         });

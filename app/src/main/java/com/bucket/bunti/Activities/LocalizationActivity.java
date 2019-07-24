@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.bucket.bunti.R;
 
-public class LocalizationScreen extends AppCompatActivity {
+public class LocalizationActivity extends AppCompatActivity {
 
     private TextView notNow;
     private Button btnPaymentScreen;
@@ -24,7 +24,7 @@ public class LocalizationScreen extends AppCompatActivity {
         notNow = findViewById(R.id.textViewNotNow);
         btnPaymentScreen = findViewById(R.id.buttonYes);
         menuScreen  = new Intent(this,MenuActivity.class);
-        paymentScreen  = new Intent(this,MenuActivity.class);
+        paymentScreen  = new Intent(this,MethodPaymentActivity.class);
 
 
         notNow.setOnClickListener(new View.OnClickListener() {
