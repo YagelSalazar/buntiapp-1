@@ -11,4 +11,6 @@
     <string name="btnacep">Aceptas nuestra política de privacidad y nuestros términos de uso</string>
     <string name="welcome">Te damos la bienvenida a Bunt`i App!</string>
     <string name="sesion">Regístrate o Inicia sesión con tu email</string>
+    <string name="btnbuscar">Buscar Taxi</string>
+    <string name="btnllamar">Llamar a la base</string>
 </resources>

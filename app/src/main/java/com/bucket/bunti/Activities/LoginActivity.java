@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText loginEmail, loginPassword;
     private Button btnLogin, btnRegister;
     //private ProgressBar progressBar;
-    private Intent homeActivity, registerActivity;
+    private Intent homeActivity, registerActivity, menuActivity;
 
 
     //FIREBASE
@@ -41,7 +41,8 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin      = findViewById(R.id.btnLogin);
         btnRegister   = findViewById(R.id.btnCreateAccount);
         oAuth         = FirebaseAuth.getInstance();
-        homeActivity  = new Intent(this,HomeActivity.class);
+        //homeActivity  = new Intent(this,HomeActivity.class);
+        menuActivity  = new Intent(this,MenuActivity.class);
         registerActivity  = new Intent(this,RegisterActivity.class);
 
         //progressBar.setVisibility(View.INVISIBLE);
@@ -90,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
     private void updateUI(String activity){
         switch (activity){
             case "home":
-                startActivity(homeActivity);
+                startActivity(menuActivity);
                 break;
 
             case "register":
