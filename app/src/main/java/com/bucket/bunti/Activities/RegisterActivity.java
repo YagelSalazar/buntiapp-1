@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -15,11 +16,18 @@ import android.widget.Toast;
 
 import com.bucket.bunti.R;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -30,6 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     //FIREBASE
     private FirebaseAuth oAuth;
+    private FirebaseFirestore dataBase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +54,7 @@ public class RegisterActivity extends AppCompatActivity {
         btnLogin     = findViewById(R.id.btnBackLogin);
         cbConditions = findViewById(R.id.cbAcept);
         oAuth        = FirebaseAuth.getInstance();
+        dataBase     = FirebaseFirestore.getInstance();
         homeActivity  = new Intent(this,HomeActivity.class);
         loginActivity  = new Intent(this,LoginActivity.class);
 
@@ -82,7 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
                     if(password.length() >= 8 && passwordC.length() >= 8){
                         if(password.equals(passwordC)){
                             // Create account
-                            CreateUserAccount(user,email,password);
+                            CreateUserAccount(user,email,phone,password);
                         } else {
                             // Wrong - passwords not same
                             showMessage("Las contraseñas no coinciden");
@@ -104,19 +114,47 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
-    private void CreateUserAccount(final String user, String email, String password) {
+    private void CreateUserAccount(final String user,final String email,final String phone, final String password) {
         //create new account
         oAuth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
-                            showMessage("Cuenta creada...");
                             updateUserInfo(user, oAuth.getCurrentUser());
+                            CreateLoginAccount(user,email,phone,password);
                         } else {
                             enableComponents();
                             showMessage("Ocurrio un error, intenta más tarde");
                         }
+                    }
+                });
+    }
+
+    private void CreateLoginAccount(final String user, String email,String phone, String password){
+        // Create a new user
+        Map<String, Object> usuario = new HashMap<>();
+        usuario.put("nombre", user);
+        usuario.put("email", email);
+        usuario.put("telefono", phone);
+        usuario.put("password", password);
+
+        // Add a new document with a generated ID
+        dataBase.collection("usuarios")
+                .add(usuario)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        //Log.d("usuario", "DocumentSnapshot added with ID: " + documentReference.getId());
+                        //after create account, create login auth
+                        showMessage("¡Registro exitoso!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        //Log.w("usuario", "Error adding document", e);
+                        showMessage("Ocurrio un error, intenta mas tarde.");
                     }
                 });
     }
@@ -133,7 +171,7 @@ public class RegisterActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         // register finished
                         if(task.isSuccessful()){
-                            showMessage("¡Registro exitoso!");
+                            showMessage("Cuenta creada...");
                             enableComponents();
                             updateUI("login");
                         }
