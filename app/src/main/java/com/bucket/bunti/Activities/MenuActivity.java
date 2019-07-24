@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.bucket.bunti.Helpers.SharedPreferencesProject;
 import com.bucket.bunti.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -33,6 +34,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
+                SharedPreferencesProject.deleteData(getApplicationContext(),"id_document");
                 Intent login = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(login);
                 finish();

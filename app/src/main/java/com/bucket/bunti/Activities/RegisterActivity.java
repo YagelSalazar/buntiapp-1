@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.bucket.bunti.Helpers.SharedPreferencesProject;
 import com.bucket.bunti.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -28,6 +29,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static java.security.AccessController.getContext;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -148,6 +151,8 @@ public class RegisterActivity extends AppCompatActivity {
                         //Log.d("usuario", "DocumentSnapshot added with ID: " + documentReference.getId());
                         //after create account, create login auth
                         showMessage("¡Registro exitoso!");
+//                        SharedPreferencesProject.insertData(getApplicationContext(),
+//                                "id_document",documentReference.getId());
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {

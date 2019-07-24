@@ -6,18 +6,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.bucket.bunti.Helpers.SharedPreferencesProject;
 import com.bucket.bunti.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -29,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //FIREBASE
     private FirebaseAuth oAuth;
+    private FirebaseFirestore dataBase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin      = findViewById(R.id.btnLogin);
         btnRegister   = findViewById(R.id.btnCreateAccount);
         oAuth         = FirebaseAuth.getInstance();
+        dataBase     = FirebaseFirestore.getInstance();
         //homeActivity  = new Intent(this,HomeActivity.class);
         menuActivity  = new Intent(this,MenuActivity.class);
         registerActivity  = new Intent(this,RegisterActivity.class);
@@ -91,6 +98,28 @@ public class LoginActivity extends AppCompatActivity {
     private void updateUI(String activity){
         switch (activity){
             case "home":
+                FirebaseUser user = oAuth.getCurrentUser();
+                String email = user.getEmail();
+                // user already connected
+                dataBase.collection("usuarios")
+                        .whereEqualTo("email", email)
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (QueryDocumentSnapshot document : task.getResult()) {
+//                                        Log.d("ID by email", document.getId() + " => " + document.getData());
+//                                        showMessage("ID "+document.getId());
+                                        SharedPreferencesProject.insertData(getApplicationContext(),
+                                                "id_document",document.getId());
+                                    }
+                                } else {
+                                    showMessage("Error: "+task.getException());
+                                    //Log.d(TAG, "Error getting documents: ", task.getException());
+                                }
+                            }
+                        });
                 startActivity(menuActivity);
                 break;
 
@@ -129,7 +158,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onStart();
         FirebaseUser user = oAuth.getCurrentUser();
         if(user != null){
-            // user already connected
             updateUI("home");
         }
     }
