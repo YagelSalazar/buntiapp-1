@@ -28,4 +28,12 @@
     <string name="taxi">¡Taxista en camino!</string>
     <string name="paciente">Le pedimos ser paciente, por su atención, gracias</string>
     <string name="tiempo">Tiempo de llegada: 5 min</string>
+    <string name="solicitud_enviada">Solicitud enviada</string>
+    <string name="en_unos_momentos_se_te_notificar_cuando_tu_solicitud_haya_sido_aceptada">En unos momentos se te notificará cuando tu solicitud haya sido aceptada.</string>
+    <string name="detalles">Detalles</string>
+    <string name="cliente_nombre_apellidos">Cliente: Nombre Apellidos</string>
+    <string name="fecha_y_hora_25_07_2019_7_20_17">Fecha y hora: 25/07/2019 - 7:20:17</string>
+    <string name="direcci_n_calle_estado_pais">Dirección: Calle, Estado, Pais.</string>
+    <string name="aceptar">Aceptar</string>
+    <string name="todo">TODO</string>
 </resources>

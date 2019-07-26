@@ -140,7 +140,6 @@ public class RegisterActivity extends AppCompatActivity {
         usuario.put("nombre", user);
         usuario.put("email", email);
         usuario.put("telefono", phone);
-        usuario.put("password", password);
 
         // Add a new document with a generated ID
         dataBase.collection("usuarios")

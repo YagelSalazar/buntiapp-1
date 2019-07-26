@@ -4,13 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.bucket.bunti.Helpers.SharedPreferencesProject;
@@ -44,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         loginEmail    = findViewById(R.id.loginEmail);
         loginPassword = findViewById(R.id.loginPassword);
         //progressBar   = findViewById(R.id.pbLogin);
-        btnLogin      = findViewById(R.id.btnLogin);
+        btnLogin      = findViewById(R.id.btnFinishRequest);
         btnRegister   = findViewById(R.id.btnCreateAccount);
         oAuth         = FirebaseAuth.getInstance();
         dataBase     = FirebaseFirestore.getInstance();

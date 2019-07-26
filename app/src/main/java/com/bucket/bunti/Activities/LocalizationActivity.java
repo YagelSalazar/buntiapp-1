@@ -35,8 +35,6 @@ public class LocalizationActivity extends AppCompatActivity {
     private Button btnPaymentScreen;
     private Intent paymentScreen, menuScreen;
 
-    //LOCATE
-    private LocationManager ubicacion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +45,6 @@ public class LocalizationActivity extends AppCompatActivity {
         btnPaymentScreen = findViewById(R.id.buttonYes);
         menuScreen  = new Intent(this,MenuActivity.class);
         paymentScreen  = new Intent(this,MethodPaymentActivity.class);
-        ubicacion = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
 
         notNow.setOnClickListener(new View.OnClickListener() {
@@ -60,17 +57,7 @@ public class LocalizationActivity extends AppCompatActivity {
         btnPaymentScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (ActivityCompat.checkSelfPermission(getApplicationContext(),
-                        Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                        ActivityCompat.checkSelfPermission(getApplicationContext(),
-                                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(LocalizationActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
-                } else {
-                    locationStart();
-                    if(SharedPreferencesProject.retriveData(getApplicationContext(),"address") != null){
-                        updateUI("payment");
-                    }
-                }
+                locationStart();
             }
         });
     }
@@ -88,41 +75,19 @@ public class LocalizationActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
             return;
         }
-        mlocManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, (LocationListener) Local);
-        mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, (LocationListener) Local);
     }
 
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == 1000) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                locationStart();
+                updateUI("payment");
                 return;
+            } else {
+                updateUI("menu");
             }
         }
     }
 
-    public void setLocation(Location loc) {
-        //Obtener la direccion de la calle a partir de la latitud y la longitud
-        if (loc.getLatitude() != 0.0 && loc.getLongitude() != 0.0) {
-            try {
-                Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-                List<Address> list = geocoder.getFromLocation(
-                        loc.getLatitude(), loc.getLongitude(), 1);
-                if (!list.isEmpty()) {
-                    Address DirCalle = list.get(0);
-                    SharedPreferencesProject.insertData(getApplicationContext(),
-                            "address",DirCalle.getAddressLine(0));
-                    SharedPreferencesProject.insertData(getApplicationContext(),
-                            "latitud",String.valueOf(loc.getLatitude()));
-                    SharedPreferencesProject.insertData(getApplicationContext(),
-                            "longitud",String.valueOf(loc.getLongitude()));
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-    }
     /* Aqui empieza la Clase Localizacion */
     public class Localizacion implements LocationListener {
         LocalizationActivity locActivity;
@@ -137,7 +102,7 @@ public class LocalizationActivity extends AppCompatActivity {
 
         @Override
         public void onLocationChanged(Location loc) {
-            this.locActivity.setLocation(loc);
+//            this.locActivity.setLocation(loc);
         }
 
         @Override
@@ -182,5 +147,14 @@ public class LocalizationActivity extends AppCompatActivity {
                 break;
         }
         finish();
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            updateUI("payment");
+        }
     }
 }
