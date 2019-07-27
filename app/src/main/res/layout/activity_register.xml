@@ -6,147 +6,102 @@
     android:layout_height="match_parent"
     tools:context=".Activities.RegisterActivity">
 
-    <EditText
-        android:id="@+id/txtName"
-        android:layout_width="300dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="62dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="62dp"
-        android:ems="10"
-        android:hint="@string/nombre"
-        android:inputType="textPersonName"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.011" />
-
-    <EditText
-        android:id="@+id/txtEmail"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="62dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="62dp"
-        android:ems="10"
-        android:hint="@string/email"
-        android:inputType="text|textEmailAddress"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtName"
-        app:layout_constraintVertical_bias="0.008" />
-
-    <EditText
-        android:id="@+id/txtPhone"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="62dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="62dp"
-        android:ems="10"
-        android:hint="telefono"
-        android:inputType="number"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtEmail"
-        app:layout_constraintVertical_bias="0.009" />
-
-    <EditText
-        android:id="@+id/txtPassword"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="62dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="62dp"
-        android:ems="10"
-        android:hint="@string/contrase_a"
-        android:inputType="textPassword"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPhone"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <EditText
-        android:id="@+id/txtPasswordConfirm"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="62dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="62dp"
-        android:ems="10"
-        android:hint="@string/confirmar_contrase_a"
-        android:inputType="textPassword"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPassword"
-        app:layout_constraintVertical_bias="0.002" />
-
-    <CheckBox
-        android:id="@+id/cbAcept"
-        android:layout_width="236dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="88dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="88dp"
+        android:layout_marginEnd="50dp"
         android:layout_marginBottom="8dp"
-        android:checked="false"
-        android:text="@string/btnacep"
-        android:textSize="16sp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtPasswordConfirm"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/btnRegister"
-        android:layout_width="257dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="77dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="77dp"
-        android:layout_marginBottom="152dp"
-        android:background="@color/colorButton"
-        android:fontFamily="@font/amiko_bold"
-        android:text="@string/registrarme"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cbAcept"
-        app:layout_constraintVertical_bias="0.026" />
+        <EditText
+            android:id="@+id/txtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/nombre"
+            android:inputType="textPersonName"
+            android:textSize="18sp"
+            android:autofillHints="" />
 
-    <Button
-        android:id="@+id/btnBackLogin"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="257dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="77dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="77dp"
-        android:layout_marginBottom="72dp"
-        android:fontFamily="@font/amiko_bold"
-        android:text="@string/iniciar_sesi_n"
-        android:textAllCaps="false"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRegister"
-        app:layout_constraintVertical_bias="0.017" />
+        <EditText
+            android:id="@+id/txtEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="@string/email"
+            android:inputType="text|textEmailAddress"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/txtPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="@string/telefono"
+            android:inputType="number"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/txtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="@string/contrase_a"
+            android:inputType="textPassword"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/txtPasswordConfirm"
+            android:layout_width="match_parent"
+            android:layout_marginTop="8dp"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/confirmar_contrase_a"
+            android:inputType="textPassword"
+            android:textSize="18sp" />
+
+        <CheckBox
+            android:id="@+id/cbAcept"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:checked="false"
+            android:text="@string/btnacep"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@color/colorButton"
+            android:fontFamily="@font/amiko_bold"
+            android:text="@string/registrarme"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnBackLogin"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/amiko_bold"
+            android:text="@string/iniciar_sesi_n"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

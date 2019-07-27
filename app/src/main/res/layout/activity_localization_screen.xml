@@ -6,93 +6,69 @@
     android:layout_height="match_parent"
     tools:context=".Activities.LocalizationActivity">
 
-    <TextView
-        android:id="@+id/textViewNotNow"
-        android:layout_width="94dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="59dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="59dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="50dp"
         android:layout_marginBottom="8dp"
-        android:text="@string/no"
-        android:textColor="#2E86C1"
-        android:textSize="22sp"
-        android:textStyle="bold"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewLocation"
-        app:layout_constraintVertical_bias="0.018" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <Button
-        android:id="@+id/buttonYes"
-        android:layout_width="248dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="82dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="82dp"
-        android:layout_marginBottom="8dp"
-        android:background="@color/colorButton"
-        android:fontFamily="@font/amiko_bold"
-        android:text="@string/btnSi"
-        android:textAllCaps="false"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewNotNow"
-        app:layout_constraintVertical_bias="0.0" />
+        <ImageView
+            android:id="@+id/imageViewLocalization"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/localizacionlogo"/>
 
-    <ImageView
-        android:id="@+id/imageViewLocalization"
-        android:layout_width="241dp"
-        android:layout_height="197dp"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="8dp"
-        android:src="@drawable/localizacionlogo"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/textViewActivate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="9dp"
+            android:fontFamily="@font/amiko_bold"
+            android:text="@string/activar"
+            android:textAlignment="center"
+            android:textColor="@color/colorText"
+            android:textSize="24sp"/>
 
-    <TextView
-        android:id="@+id/textViewActivate"
-        android:layout_width="292dp"
-        android:layout_height="85dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="60dp"
-        android:fontFamily="@font/amiko_bold"
-        android:text="@string/activar"
-        android:textAlignment="center"
-        android:textColor="@color/colorText"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewLocalization"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/textViewLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/ubicacion"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
 
-    <TextView
-        android:id="@+id/textViewLocation"
-        android:layout_width="290dp"
-        android:layout_height="53dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/ubicacion"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewActivate"
-        app:layout_constraintVertical_bias="0.0" />
+        <TextView
+            android:id="@+id/textViewNotNow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/no"
+            android:textColor="#2E86C1"
+            android:textSize="22sp"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/buttonYes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorButton"
+            android:fontFamily="@font/amiko_bold"
+            android:text="@string/btnSi"
+            android:textAllCaps="false"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
